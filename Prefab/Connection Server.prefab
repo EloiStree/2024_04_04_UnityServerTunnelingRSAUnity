@@ -1,0 +1,163 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3899463444503619392
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4762600986915012032}
+  - component: {fileID: 7228867278233213904}
+  m_Layer: 0
+  m_Name: Connection Server
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4762600986915012032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3899463444503619392}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 9000896956963311553}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7228867278233213904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3899463444503619392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a95a4ea85c3b33e489d5a0382dc259f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_serverUri: ws://81.240.94.97:4501
+  m_privateKey: <RSAKeyValue><Modulus>th3XuMm0CO6RFE8MqZ9un1KjPeXSoYs7QEFAC+WEoYSfuL6B21weefdNFFdZlZCmn0K1J3iX3mXED5RUd2P5dfZx1Jo1cDh/+udOpUpBY/JBnHfD9RV0gh5ydVUWVcSiMNI+YFGYjDSbP8off3lPvWZ//HVvkxoSbukO8Z5SCxk=</Modulus><Exponent>AQAB</Exponent><P>0WbhbxZpX5DKjyFEPLCjhr254RJSUSCtZyEO/w5MywcifTMkCbfn2bHSVEs7Nz79zWyhuClC+gK+x93+2wVZ4w==</P><Q>3qSVilYbk/rdX4Cb9JvKIZx39VBn90Q4XtIIj0iFV0hg2Y5yh8mgTz3ZO4b1sQQoN4iFf+MR+V4IBf/z/AlH0w==</Q><DP>OGHJJU4VhUPJJozAgM7W2PrQx8dVHr77sZ73GLnS93+uS6OvemZoKPd2OHghM5jkYaF0Uc/aVtLSZ6JgcryYHQ==</DP><DQ>By6D7Fxus01KSsRZQ4Cq+n6TmAQp9l3q+5QG1qheNLyO8zWXGC42z5eNJFBsKHOb4H6037UxZTvVQmxJMH4UJQ==</DQ><InverseQ>Z4Txjn7901hgobqxdNMbGlmF7KhSmixKzTn6jF4zsHQshHy/fhfVV+hs4gdLyLOZcRRieii/7ppz1OmV/bjatQ==</InverseQ><D>kb0kCy7vMk6oL1ZrTbrWrg1VsY0fmENxsSQGev67uv4FS7S4+rCnevda6bJVcImHrd+WVPX+ou1Rjx4m0jxhPpmwBbFL2GsgEt4KdNhaAFZ4KS7oPkQn//gaRRNt44udGlO+Mz3TrVshfceCYiNVrjdTAP7VUsFoXp0UAm+4FLk=</D></RSAKeyValue>
+  m_publicKey: <RSAKeyValue><Modulus>th3XuMm0CO6RFE8MqZ9un1KjPeXSoYs7QEFAC+WEoYSfuL6B21weefdNFFdZlZCmn0K1J3iX3mXED5RUd2P5dfZx1Jo1cDh/+udOpUpBY/JBnHfD9RV0gh5ydVUWVcSiMNI+YFGYjDSbP8off3lPvWZ//HVvkxoSbukO8Z5SCxk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>
+  m_isConnectionValidated: 0
+  m_lastPushedMessage: 
+  m_lastPushedMessageAsByte: 
+  m_messageToSignedReceived: 
+  m_connectionEstablishedAndVerified: 0
+  m_lastMessageReceived: 
+  m_lastMessageReceivedAsByte: 
+  buffer: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  m_lastReceivedMessageTextDate: 
+  m_lastReceivedMessageBinaryDate: 
+  m_lastPushMessageTextDate: 
+  m_lastPushMessageBinaryDate: 
+  m_autoStart: 1
+  m_autoReconnect: 1
+  m_previousInteger: 0
+--- !u!1 &4958614632564321435
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9000896956963311553}
+  - component: {fileID: 3741547234461482928}
+  - component: {fileID: 7841550963531074578}
+  m_Layer: 0
+  m_Name: Listen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9000896956963311553
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958614632564321435}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4762600986915012032}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3741547234461482928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958614632564321435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c61024400bb3364da777b53206be0ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_connection: {fileID: 7228867278233213904}
+  m_onReceivedMessageUTF8:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7841550963531074578}
+        m_TargetAssemblyTypeName: TDD_ReceivedFromConnectToRelayServerTunnelingRsaMono,
+          Assembly-CSharp
+        m_MethodName: PushText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_onReceivedMessageBytes:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7841550963531074578}
+        m_TargetAssemblyTypeName: TDD_ReceivedFromConnectToRelayServerTunnelingRsaMono,
+          Assembly-CSharp
+        m_MethodName: PushBytes
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_catchExceptions: 1
+--- !u!114 &7841550963531074578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958614632564321435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d8e045175460e04eba1928e9fd04587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_text: 
+  m_binary: 
+  m_intIndex: 0
+  m_intValue: 0
+  m_utcDateMilliseconds: 0
+  m_receivedTime: 0
+  m_sendToReceivedLag: 0

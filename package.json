@@ -1,0 +1,23 @@
+
+{                                                                                
+  "name": "be.eloistree.iidwstunnelingrsa",                              
+  "displayName": "Integer Index Date Web Socket RSA tunneling",                        
+  "version": "0.0.1",                         
+  "unity": "2018.1",                             
+  "unityRelease": "",                             
+  "description": "Allow to make a handshake RSA connection to a websocket server that allows to set and fetch a integer index date value.",                         
+  "keywords": ["Script","Tool"],                       
+  "dependencies":{},     
+  "relatedPackages":{},     
+  "samples" : [],     
+  "author" : {
+"name":"Stree Eloi",
+"mail":"",
+"url":""},     
+  "repository":{
+"type":"Git",
+"url":"https://github.com/EloiStree/2024_04_04_UnityServerTunnelingRSAUnity.git",
+"footprint":"",
+"revision":""},     
+  "category": "Script"                   
+} 

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Example</title>
+</head>
+<body>
+    <div id="output"></div>
+    <div id="debug"></div>
+    <div id="key"></div>
+    <script>
+        const private_rsa_key="<RSAKeyValue><Modulus>28hcojmUPKGJAp5+TeocYBZ6YYSiG85+BaRcrQ0c8Lnraa2czWZfZDmguC4VoeJ44JmO7RMGmOUWie+QAJwLRLwlN19J3+sy/LzgYQL9VtrEM7Eyx1KnGWN08ZablH/Vrg7+/K/97+Q9neeimpufTtOCoym7sTcHHvlsa98IytE=</Modulus><Exponent>AQAB</Exponent><P>9I2dGJ9OYjUELlcqBmY/ieI1uv//1F3BdoeeplgPU0e7nZY/0IZrPJuMlZZDEitMFgcA0Fq/zwLalSLRytsqmw==</P><Q>5hHuw8SxLjWllvvAyf+J6TPVLDpKb6TfhjFWXIh/jGyrtDlxHkjXxzJ8257O2RuLldFjvyHhnD0H9HzXDpkRAw==</Q><DP>camQJm2EhOiXNOKWSbskNPXKe0uYoB+jV2/ZMP8kwFRKwweeSVDwbo7tXGkmaz9scaB3pF9JXvG4njA8ycfrmQ==</DP><DQ>YNhdnFS4jI4ShSq2LZF+uQaTjkl/Od26JZ+xDcR7hF3eLUAcyLW69uPewQfpZGR+7nK0vSkC8iSSq6y9TizKhw==</DQ><InverseQ>mF7mxJyiKT+oMfxZzTrYr1NWrp2l1pxoaXwOmFEBSegP2Lka9l38M1y2ij4+/790uzKD7EIv8m9ARfxdxAu0dw==</InverseQ><D>M5/ysmBYA43mAul7vY16MM/W20UuVt3AGE8tPbDQ1XK2a1JOfKjJS1+F8v1QM4Bg6FDpk6JecFePXcMZzirZMlKK9Wh/2p04ZNSlM9haZOqvrAEVDzr7QxTOn1uMGJwudNFHZMHx1sW5L+RJgkv527NDeAT/PxScrgOM01piNOk=</D></RSAKeyValue>";
+        const public_rsa_key= "<RSAKeyValue><Modulus>28hcojmUPKGJAp5+TeocYBZ6YYSiG85+BaRcrQ0c8Lnraa2czWZfZDmguC4VoeJ44JmO7RMGmOUWie+QAJwLRLwlN19J3+sy/LzgYQL9VtrEM7Eyx1KnGWN08ZablH/Vrg7+/K/97+Q9neeimpufTtOCoym7sTcHHvlsa98IytE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>";
+        const private_rsa_key_pem="MIICWAIBAAKBgNvIXKI5lDyhiQKefk3qHGAWemGEohvOfgWkXK0NHPC562mtnM1m"+
+"X2Q5oLguFaHieOCZju0TBpjlFonvkACcC0S8JTdfSd/rMvy84GEC/VbaxDOxMsdS"+
+"pxljdPGWm5R/1a4O/vyv/e/kPZ3nopqbn07TgqMpu7E3Bx75bGvfCMrRAgMBAAEC"+
+"gYAzn/KyYFgDjeYC6Xu9jXowz9bbRS5W3cAYTy09sNDVcrZrUk58qMlLX4Xy/VAz"+
+"gGDoUOmTol5wV49dwxnOKtkyUor1aH/anThk1KUz2Fpk6q+sARUPOvtDFM6fW4wY"+
+"nC500UdkwfHWxbkv5EmCS/nbs0N4BP8/FJyuA4zTWmI06QJA9I2dGJ9OYjUELlcq"+
+"BmY/ieI1uv//1F3BdoeeplgPU0e7nZY/0IZrPJuMlZZDEitMFgcA0Fq/zwLalSLR"+
+"ytsqmwJA5hHuw8SxLjWllvvAyf+J6TPVLDpKb6TfhjFWXIh/jGyrtDlxHkjXxzJ8"+
+"257O2RuLldFjvyHhnD0H9HzXDpkRAwJAcamQJm2EhOiXNOKWSbskNPXKe0uYoB+j"+
+"V2/ZMP8kwFRKwweeSVDwbo7tXGkmaz9scaB3pF9JXvG4njA8ycfrmQJAYNhdnFS4"+
+"jI4ShSq2LZF+uQaTjkl/Od26JZ+xDcR7hF3eLUAcyLW69uPewQfpZGR+7nK0vSkC"+
+"8iSSq6y9TizKhwJAmF7mxJyiKT+oMfxZzTrYr1NWrp2l1pxoaXwOmFEBSegP2Lka"+
+"9l38M1y2ij4+/790uzKD7EIv8m9ARfxdxAu0dw==";        
+
+
+
+async function generateKeyPair() {
+    const keyPair = await window.crypto.subtle.generateKey(
+        {
+            name: 'RSASSA-PKCS1-v1_5',
+            modulusLength: 1024,
+            publicExponent: new Uint8Array([1, 0, 1]),
+            hash: 'SHA-256',
+        },
+        true,
+        ['sign', 'verify']
+    );
+
+    const privateKey = await window.crypto.subtle.exportKey('pkcs8', keyPair.privateKey);
+    const publicKey = await window.crypto.subtle.exportKey('spki', keyPair.publicKey);
+
+    return { privateKey, publicKey };
+}
+
+
+var genKeyPrivate;
+var genKeyPublic;
+async function displayResult() {
+    const keyPair = await generateKeyPair();
+    const resultDiv = document.getElementById('key');
+    resultDiv.innerHTML = `Private Key: ${btoa(String.fromCharCode.apply(null, new Uint8Array(keyPair.privateKey)))}<br>Public Key: ${btoa(String.fromCharCode.apply(null, new Uint8Array(keyPair.publicKey)))}`;
+    genKeyPrivate= keyPair.privateKey;
+    genKeyPublic= keyPair.publicKey;
+}
+
+displayResult();
+
+
+
+        function appendToDebugDiv(text) {
+            const debugDiv = document.getElementById('debug');
+            debugDiv.innerHTML += text;
+        }
+           
+        
+         
+
+    
+        const outputDiv = document.getElementById('output');
+        const socket = new WebSocket('ws://81.240.94.97:3615');
+
+
+          
+
+                  
+        async function signMessage(message, privateKey) {
+           
+
+            //FIND A WAY TO SIGN  LATER
+
+            appendToDebugDiv('SIGNED: ' + message);
+            //socket.send("SIGNED: " + message);
+        }
+
+
+        // WebSocket event listeners
+        socket.onopen = function() {
+            outputDiv.innerHTML = 'WebSocket connection established.';
+            socket.send("Hello " + public_rsa_key);
+        };
+
+        socket.onmessage = function(event) {
+            outputDiv.innerHTML = 'Received message: ' + event.data;
+            if (event.data.startsWith("SIGNIN:")) {
+                const message = event.data.substring(7);
+                outputDiv.innerHTML = 'Received message to signed: ' + message;
+
+                signMessage(message, private_rsa_key);
+                appendToDebugDiv('YOO.');
+               
+            } else
+            if (event.data.startsWith("RSA:Verified")) {
+
+               
+                appendToDebugDiv('Succeed RSA Verified.');
+            }else{
+
+                appendToDebugDiv('R:'+ event.data );
+
+            }
+
+            
+
+        };
+
+        socket.onclose = function() {
+            outputDiv.innerHTML = 'WebSocket connection closed.';
+        };
+
+        socket.onerror = function(error) {
+            outputDiv.innerHTML = 'WebSocket error: ' + error;
+        };
+
+        appendToDebugDiv("Hello ");
+        setInterval(function() {
+            socket.send("Date Time: " + new Date());
+        }, 5000);
+
+        appendToDebugDiv("End ");
+        
+    </script>
+</body>
+</html>
