@@ -131,6 +131,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 792625220747533141, guid: 04c78d006e2e69642b38f51834f0ba36,
+        type: 3}
+      propertyPath: m_publicXmlKey
+      value: <RSAKeyValue><Modulus>jiO7XhFO7NGXK4y4wKhT+aeQzgD9rihqzQfy8FvHZYARlJVOPBZwqOPPWgEjcv7wwYYLAOb/QibdFyqmLO6qznQAlmQ/s0sdzza7Oam+ZfKNFWU140AGHRg6tN+nCXsBoXyi+08J4cXBEmA/8bXpSSPQOw8NKyH5FpeFX/gjMfE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>
+      objectReference: {fileID: 0}
+    - target: {fileID: 792625220747533141, guid: 04c78d006e2e69642b38f51834f0ba36,
+        type: 3}
+      propertyPath: m_privateXmlKey
+      value: <RSAKeyValue><Modulus>jiO7XhFO7NGXK4y4wKhT+aeQzgD9rihqzQfy8FvHZYARlJVOPBZwqOPPWgEjcv7wwYYLAOb/QibdFyqmLO6qznQAlmQ/s0sdzza7Oam+ZfKNFWU140AGHRg6tN+nCXsBoXyi+08J4cXBEmA/8bXpSSPQOw8NKyH5FpeFX/gjMfE=</Modulus><Exponent>AQAB</Exponent><P>4qLJWArKh4qJTdNVVbnNS05G6Mljatl7WLrQm37xn4fadEadhXstqvH+5axwLEzwl6yNO9/qKDJk7C3FxjpdHw==</P><Q>oI5QdgaFimSv2kXaBMPj9xvzol1hVjp2l4QTYfi+l0q+HFREi/nU9hadlsMpaqMwd4TSw+xTA7Z3R21wJw9+7w==</Q><DP>PfhFFc3dkzJOWPlwXAByIiVFPmHSzWSqVZi/ccVETFrZYPHuIJGN6zBAgoykH3jqUI7eD4EqhdNBxVK+wXU0AQ==</DP><DQ>j9uUCnyDcOIQktGdrEFc5A++d8+VpG5TziTAPTtkgiitOLLkjEr43tqarvgFBxBbH+v58SSxqRT3wR80qzr+Lw==</DQ><InverseQ>L2qM0wfojSDMkIw5QAovXM8UMK46p/hHKG9r50bLwPdEMdgfBogGrS26m599aJq4JczF0Rhzt+z1CPPrG292pw==</InverseQ><D>Zo//7gN9OMKPWvxCf7m2RmmTwiHS6qz9S46VzLvc6C9+AAGwHwluJ1+iSeaSZrLwlCOdovwLafdTBxleKQPaOOD2RoazWCN1qw9J+zhujzKdI9++kxm0slE6keHzmmzpp31w5o2Z812ywFYvCrbmv/YJHjYmes5XrVpVKBsF8cU=</D></RSAKeyValue>
+      objectReference: {fileID: 0}
     - target: {fileID: 4375012897755316294, guid: 04c78d006e2e69642b38f51834f0ba36,
         type: 3}
       propertyPath: m_LocalPosition.x

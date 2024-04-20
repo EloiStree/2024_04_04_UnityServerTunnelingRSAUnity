@@ -15,7 +15,7 @@ public class ReceivedFromConnectToRelayServerTunnelingRsaMono : MonoBehaviour
     public UnityEvent<byte[]> m_onReceivedMessageBytes = new UnityEvent<byte[]>();
     public void Start()
     {
-        if(m_connection != null)
+        if (m_connection != null)
         {
             m_connection.m_onThreadMessageReceivedBinary = OnMessageReceived;
             m_connection.m_onThreadMessageReceivedText = OnMessageReceived;
@@ -40,7 +40,12 @@ public class ReceivedFromConnectToRelayServerTunnelingRsaMono : MonoBehaviour
             {
                 try
                 {
-                    m_onReceivedMessageBytes.Invoke(m_receivedFromServerBytes.Dequeue());
+                    byte[] v = m_receivedFromServerBytes.Dequeue();
+                    if (v != null && v.Length > 0)
+                    {
+                        m_onReceivedMessageBytes.Invoke(v);
+                    }
+
                 }
                 catch (Exception e)
                 {
@@ -49,7 +54,11 @@ public class ReceivedFromConnectToRelayServerTunnelingRsaMono : MonoBehaviour
             }
             else
             {
-                m_onReceivedMessageBytes.Invoke(m_receivedFromServerBytes.Dequeue());
+                byte[] v = m_receivedFromServerBytes.Dequeue();
+                if (v != null && v.Length > 0)
+                {
+                    m_onReceivedMessageBytes.Invoke(v);
+                }
             }
         }
         while (m_receivedFromServerUTF8.Count > 0)
@@ -58,7 +67,11 @@ public class ReceivedFromConnectToRelayServerTunnelingRsaMono : MonoBehaviour
             {
                 try
                 {
-                    m_onReceivedMessageUTF8.Invoke(m_receivedFromServerUTF8.Dequeue());
+                    string v = m_receivedFromServerUTF8.Dequeue();
+                    if (v != null && v.Length > 0)
+                    {
+                        m_onReceivedMessageUTF8.Invoke(v);
+                    }
                 }
                 catch (Exception e)
                 {
@@ -67,7 +80,11 @@ public class ReceivedFromConnectToRelayServerTunnelingRsaMono : MonoBehaviour
             }
             else
             {
-                m_onReceivedMessageUTF8.Invoke(m_receivedFromServerUTF8.Dequeue());
+                string v = m_receivedFromServerUTF8.Dequeue();
+                if (v != null && v.Length > 0)
+                {
+                    m_onReceivedMessageUTF8.Invoke(v);
+                }
             }
         }
     }
