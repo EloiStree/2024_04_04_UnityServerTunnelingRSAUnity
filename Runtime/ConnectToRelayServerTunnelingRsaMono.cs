@@ -73,6 +73,9 @@ public class ConnectToRelayServerTunnelingRsaMono : MonoBehaviour
         m_privateKey = xmlKey;
     }
 
+    public void SetWebsocketUrlWS(string url) {
+        m_serverUri = url;
+    }
     private void OnDestroy()
     {
        
