@@ -81,9 +81,12 @@ public class ConnectToRelayServerTunnelingRsaMono : MonoBehaviour
        
         if (m_connectionEstablished != null)
         {
-            try { 
-            
-            m_connectionEstablished.Abort();
+            try {
+                if (m_previousSocketStop != null)
+                {
+                    m_previousSocketStop.m_stopLoop = true;
+                }
+                m_connectionEstablished.Abort();
             m_connectionEstablished.Dispose();
             }
             catch (Exception e)
@@ -117,14 +120,34 @@ public class ConnectToRelayServerTunnelingRsaMono : MonoBehaviour
     Task m_running;
     public void CheckConnectionState()
     {
-        if (m_connectionEstablished == null )
+        if (m_connectionEstablished == null)
         {
-            m_running = Task.Run(() => ConnectAndRun());
+            if (m_previousSocketStop != null)
+            {
+                m_previousSocketStop.m_stopLoop = true;
+            }
+            m_previousSocketStop = new StopLoop();
+            m_running = Task.Run(() => ConnectAndRun(m_previousSocketStop));
         }
-        
+
+    }
+    [ContextMenu("Close and connect")]
+    public void CloseAndRelanchConnection()
+    {
+        if (m_previousSocketStop!=null) {
+            m_previousSocketStop.m_stopLoop = true;
+        }
+       
+        if (m_connectionEstablished == null)
+        {
+            m_previousSocketStop = new StopLoop();
+            m_running = Task.Run(() => ConnectAndRun(m_previousSocketStop));
+        }
+       
+
     }
 
-   
+
     public static byte[] SignData(byte[] data, RSAParameters privateKey)
     {
 
@@ -143,33 +166,42 @@ public class ConnectToRelayServerTunnelingRsaMono : MonoBehaviour
         }
     }
 
-    public async Task ConnectAndRun()
+    public class StopLoop {
+        public bool m_stopLoop = false;
+    }
+    ClientWebSocket m_websocket;
+    StopLoop m_previousSocketStop;
+    public async Task ConnectAndRun(StopLoop stop )
     {
+        Debug.Log("Connect and run");
         ResetAllValue();
-        using (ClientWebSocket webSocket = new ClientWebSocket())
+        using ( m_websocket = new ClientWebSocket())
         {
+            
             m_isConnectionValidated = false;
-            m_connectionEstablished = webSocket;
+            m_connectionEstablished = m_websocket;
             try
             {
                 m_messageToSignedReceived = "";
                 m_connectionEstablishedAndVerified = false;
                 Console.WriteLine($"Connecting to server: {m_serverUri}");
-                await webSocket.ConnectAsync(new Uri(m_serverUri), CancellationToken.None);
+                await m_websocket.ConnectAsync(new Uri(m_serverUri), CancellationToken.None);
 
-                Task.Run(() => ReceiveMessages(webSocket));
-
-
+                Task.Run(() => ReceiveMessages(m_websocket));
 
 
 
-                while (webSocket.State == WebSocketState.Open)
+
+
+                while (m_websocket.State == WebSocketState.Open)
                 {
+                    if (stop.m_stopLoop)
+                        throw new Exception("Force close");
 
                     if (!m_connectionEstablishedAndVerified)
                     {
                         byte[] b = Encoding.UTF8.GetBytes("Hello "+m_publicKey);
-                        await webSocket.SendAsync(new ArraySegment<byte>(b), WebSocketMessageType.Text, true, CancellationToken.None);
+                        await m_websocket.SendAsync(new ArraySegment<byte>(b), WebSocketMessageType.Text, true, CancellationToken.None);
 
                         while (m_messageToSignedReceived.Length == 0)
                         {
@@ -193,13 +225,15 @@ public class ConnectToRelayServerTunnelingRsaMono : MonoBehaviour
                         byte[] signatureBytes = Encoding.UTF8.GetBytes(sent);
                         Console.WriteLine($"Sent message to server: {sent}");
                         Console.WriteLine($"Sent message to server: {messageToSigne}");
-                        await webSocket.SendAsync(new ArraySegment<byte>(signatureBytes), WebSocketMessageType.Text, true, CancellationToken.None);
+                        await m_websocket.SendAsync(new ArraySegment<byte>(signatureBytes), WebSocketMessageType.Text, true, CancellationToken.None);
                         // create a signe message
                         byte[] bb = Encoding.UTF8.GetBytes(messageToSigne);
-                        await webSocket.SendAsync(new ArraySegment<byte>(bb), WebSocketMessageType.Text, true, CancellationToken.None);
+                        await m_websocket.SendAsync(new ArraySegment<byte>(bb), WebSocketMessageType.Text, true, CancellationToken.None);
 
-                        while (!m_connectionEstablishedAndVerified && webSocket.State == WebSocketState.Open)
+                        while (!m_connectionEstablishedAndVerified && m_websocket.State == WebSocketState.Open)
                         {
+                            if (stop.m_stopLoop)
+                                throw new Exception("Force clsoe");
                             await Task.Delay(20);
                         }
                         m_isConnectionValidated = true;
@@ -213,7 +247,7 @@ public class ConnectToRelayServerTunnelingRsaMono : MonoBehaviour
                         Console.WriteLine($"Sending message to server: {m_toSendToTheServerUTF8.Peek()}");
                             m_lastPushedMessage= m_toSendToTheServerUTF8.Peek();
                         byte[] messageBytes = Encoding.UTF8.GetBytes(m_toSendToTheServerUTF8.Dequeue());
-                        await webSocket.SendAsync(new ArraySegment<byte>(messageBytes), WebSocketMessageType.Text, true, CancellationToken.None);
+                        await m_websocket.SendAsync(new ArraySegment<byte>(messageBytes), WebSocketMessageType.Text, true, CancellationToken.None);
                     }
                     while (m_toSendToTheServerBytes.Count > 0)
                     {
@@ -221,7 +255,7 @@ public class ConnectToRelayServerTunnelingRsaMono : MonoBehaviour
                         Console.WriteLine($"Sending message to server: {m_toSendToTheServerBytes.Peek()}");
                             m_lastMessageReceivedAsByte = m_toSendToTheServerBytes.Peek();
                         byte[] messageBytes = m_toSendToTheServerBytes.Dequeue();
-                        await webSocket.SendAsync(new ArraySegment<byte>(messageBytes), WebSocketMessageType.Binary, true, CancellationToken.None);
+                        await m_websocket.SendAsync(new ArraySegment<byte>(messageBytes), WebSocketMessageType.Binary, true, CancellationToken.None);
                     }
                     await Task.Delay(1);
                 }
