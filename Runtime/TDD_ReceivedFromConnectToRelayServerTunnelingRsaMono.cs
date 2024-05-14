@@ -1,10 +1,14 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TDD_ReceivedFromConnectToRelayServerTunnelingRsaMono : MonoBehaviour
 {
     public string m_text = "";
+    public List<string> m_logReceivedText= new List<string>();
+    public int m_maxLogSize = 10;
     public byte [] m_binary ;
 
     public int m_intIndex = 0;
@@ -15,12 +19,18 @@ public class TDD_ReceivedFromConnectToRelayServerTunnelingRsaMono : MonoBehaviou
 
 
     
+    
     public delegate void OnIndexIntegerDateFound(int index, int value, ulong utcDateMilliseconds, ulong receivedTime);
     public OnIndexIntegerDateFound m_onIndexIntegerDateFound;
 
     public void PushText(string receivedText)
     {
         m_text = receivedText;
+        m_logReceivedText.Insert(0, receivedText);
+        while (m_logReceivedText.Count > m_maxLogSize)
+            m_logReceivedText.RemoveAt(m_logReceivedText.Count - 1);
+
+
     }
     public void PushBytes(byte[] receivedBytes)
     {

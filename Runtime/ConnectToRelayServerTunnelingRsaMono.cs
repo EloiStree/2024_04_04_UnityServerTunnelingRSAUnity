@@ -86,12 +86,14 @@ public class ConnectToRelayServerTunnelingRsaMono : MonoBehaviour
                 {
                     m_previousSocketStop.m_stopLoop = true;
                 }
-                m_connectionEstablished.Abort();
-            m_connectionEstablished.Dispose();
+                if(m_connectionEstablished!=null)
+                    m_connectionEstablished.Abort();
+                if(m_connectionEstablished !=null)
+                    m_connectionEstablished.Dispose();
             }
             catch (Exception e)
             {
-                Debug.LogError(e);
+                Debug.LogError(e.StackTrace +" "+e.Message) ;
             }
         }
     }
