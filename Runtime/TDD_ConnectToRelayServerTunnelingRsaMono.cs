@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TDD_ConnectToRelayServerTunnelingRsaMono : MonoBehaviour
 {
-    public ConnectToRelayServerTunnelingRsaMono m_connection;
+    public ConnectToServerTunnelingRsaMono m_connection;
 
     public string m_time = "";
 
@@ -25,7 +25,7 @@ public class TDD_ConnectToRelayServerTunnelingRsaMono : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
             yield return new WaitForSeconds(m_timeWaiting);
             m_time = System.DateTime.UtcNow.ToString();
-            if (m_connection.m_connectionEstablishedAndVerified) {
+            if (m_connection.m_tunnel.IsConnectedAndHandShakeVerified()) {
 
                 //m_connection.PushMessageText("Time Client: " + System.DateTime.UtcNow.ToString());
                 yield return new WaitForSeconds(m_timeWaiting);

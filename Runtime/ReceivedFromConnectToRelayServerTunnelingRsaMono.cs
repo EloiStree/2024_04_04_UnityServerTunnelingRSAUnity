@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class ReceivedFromConnectToRelayServerTunnelingRsaMono : MonoBehaviour
 {
 
-    public ConnectToRelayServerTunnelingRsaMono m_connection;
+    public ConnectToServerTunnelingRsaMono m_connection;
 
     public Queue<string> m_receivedFromServerUTF8 = new Queue<string>();
     public Queue<byte[]> m_receivedFromServerBytes = new Queue<byte[]>();
@@ -17,8 +17,8 @@ public class ReceivedFromConnectToRelayServerTunnelingRsaMono : MonoBehaviour
     {
         if (m_connection != null)
         {
-            m_connection.m_onThreadMessageReceivedBinary = OnMessageReceived;
-            m_connection.m_onThreadMessageReceivedText = OnMessageReceived;
+            m_connection.m_trafficEvent.m_onThreadMessageReceivedBinary = OnMessageReceived;
+            m_connection.m_trafficEvent.m_onThreadMessageReceivedText = OnMessageReceived;
         }
     }
 
