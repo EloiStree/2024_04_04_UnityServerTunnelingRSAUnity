@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class ConnectToRelayServerTunnelingRsaMono : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class ConnectToRelayServerTunnelingRsaMono : MonoBehaviour
     public Queue<byte[]> m_toSendToTheServerBytes = new Queue<byte[]>();
     public ClientWebSocket m_connectionEstablished;
     public bool m_isConnectionValidated;
+    public bool m_receiveGivenIndexLock = false;
+    public int m_givenIndexLock = int.MinValue;
     public string m_lastPushedMessage = "";
     public byte[] m_lastPushedMessageAsByte;
 
@@ -120,15 +123,39 @@ public class ConnectToRelayServerTunnelingRsaMono : MonoBehaviour
 
 
     Task m_running;
+    public bool isGood = false;
+    public bool isRunningTask = false;
+    public bool isWebsocketConnected = false;
+    public WebSocketState m_websocketState = WebSocketState.None;
+
+    private void Update()    
+    {
+        isRunningTask = m_running != null && !m_running.IsCompleted;
+        isWebsocketConnected = m_connectionEstablished != null;
+        if (m_connectionEstablished != null)
+            m_websocketState = m_connectionEstablished.State;
+        else m_websocketState = WebSocketState.None;
+
+
+        isGood = (m_running != null && !m_running.IsCompleted)
+            && m_connectionEstablished != null;
+    }
     public void CheckConnectionState()
     {
-        if (m_connectionEstablished == null)
+
+        bool isGood = (m_running != null && !m_running.IsCompleted)
+            && m_connectionEstablished != null;
+
+        if (!isGood)
         {
-            if (m_previousSocketStop != null)
+            if (m_connectionEstablished != null)
             {
-                m_previousSocketStop.m_stopLoop = true;
+                m_connectionEstablished.Abort();
+                m_connectionEstablished.Dispose();
             }
+            m_connectionEstablished = null;
             m_previousSocketStop = new StopLoop();
+            m_previousSocketStop.m_stopLoop = false;
             m_running = Task.Run(() => ConnectAndRun(m_previousSocketStop));
         }
 
@@ -156,7 +183,7 @@ public class ConnectToRelayServerTunnelingRsaMono : MonoBehaviour
         using (RSA rsa = RSA.Create())
         {
             rsa.ImportParameters(privateKey);
-            return rsa.SignData(data, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
+             return rsa.SignData(data, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
         }
     }
     public static bool VerifySignature(byte[] data, byte[] signature, RSAParameters publicKey)
@@ -190,9 +217,6 @@ public class ConnectToRelayServerTunnelingRsaMono : MonoBehaviour
                 await m_websocket.ConnectAsync(new Uri(m_serverUri), CancellationToken.None);
 
                 Task.Run(() => ReceiveMessages(m_websocket));
-
-
-
 
 
                 while (m_websocket.State == WebSocketState.Open)
@@ -276,7 +300,34 @@ public class ConnectToRelayServerTunnelingRsaMono : MonoBehaviour
         m_connectionEstablished = null;
     }
 
-   
+
+
+
+    [ContextMenu("Push Hello World")]
+    public void PushHelloWorldMessage() => PushMessageText("Hello world");
+    [ContextMenu("Push GUID")]
+    public void PushGuid() => PushMessageText(Guid.NewGuid().ToString());
+
+    [ContextMenu("Push Date UTC ")]
+    public void PushDateTimeNowUTC() => PushMessageText(DateTime.UtcNow.ToString());
+
+
+    [ContextMenu("Push Random Bytes 0 to 20")]
+    public void PushRandomBytesTo20() => PushMessageBytes(GetRandomBytes(0, 20));
+    [ContextMenu("Push Random Bytes 0 to 1000")]
+    public void PushRandomBytesTo1023() => PushMessageBytes(GetRandomBytes(0, 1000));
+    [ContextMenu("Push Random Bytes 1050 to 65000")]
+    public void PushRandomBytesTo65500() => PushMessageBytes(GetRandomBytes(1050, 65000));
+
+    private byte[] GetRandomBytes(int min, int max)
+    {
+        byte[] b = new byte[UnityEngine.Random.Range(min, max)];
+        for (int i = 0; i < b.Length; i++)
+        {
+            b[i] = (byte)UnityEngine.Random.Range(0, 255);
+        }
+        return b;
+    }
 
     public void PushMessageText(string textToSend)
     {
@@ -288,25 +339,45 @@ public class ConnectToRelayServerTunnelingRsaMono : MonoBehaviour
     }
     public int m_previousInteger    = 0;
 
-    [ContextMenu("Push random integer")]
-    public void PushRandomInteger()
+
+
+
+
+    [ContextMenu("Push random integer LE")]
+    public void PushRandomInteger4Bytes()
     {
-        PushMessageInteger(UnityEngine.Random.Range(int.MinValue, int.MaxValue));
+        PushMessageInteger4BytesLE(UnityEngine.Random.Range(int.MinValue, int.MaxValue));
     }
-    [ContextMenu("Push random integer 0-100")]
-    public void PushRandomIntegerFrom0To100()
+    [ContextMenu("Push random integer LE 0-100")]
+    public void PushRandomInteger4BytesFrom0To100()
     {
-        PushMessageInteger(UnityEngine.Random.Range(0,100));
+        PushMessageInteger4BytesLE(UnityEngine.Random.Range(0, 100));
     }
 
-    public void PushMessageInteger(int value)
-    {
-       PushMessageInteger(value, DateTime.UtcNow);
+    public void PushMessageInteger4BytesLE(int value)
+    {      
+        m_previousInteger = value;
+        m_toSendToTheServerBytes.Enqueue(BitConverter.GetBytes(value));
     }
-    public void PushMessageInteger(int value, DateTime time)
+
+
+    [ContextMenu("Push random integer IID")]
+    public void PushRandomIntegerIID()
     {
-        if (m_previousInteger == value)
-            return;
+        PushMessageIntegerIID(UnityEngine.Random.Range(int.MinValue, int.MaxValue));
+    }
+    [ContextMenu("Push random integer IID 0-100")]
+    public void PushRandomIntegerIIDFrom0To100()
+    {
+        PushMessageIntegerIID(UnityEngine.Random.Range(0,100));
+    }
+
+    public void PushMessageIntegerIID(int value)
+    {
+        PushMessageIntegerIID(value, DateTime.UtcNow);
+    }
+    public void PushMessageIntegerIID(int value, DateTime time)
+    {
         byte[] localBytes = new byte[12];
         m_previousInteger = value;
         BitConverter.GetBytes(value).CopyTo(localBytes, 0);
@@ -326,33 +397,46 @@ public class ConnectToRelayServerTunnelingRsaMono : MonoBehaviour
             if (result.MessageType == WebSocketMessageType.Text)
             {
 
-                    m_lastReceivedMessageTextDate = DateTime.UtcNow.ToString();
-                    string receivedMessage = Encoding.UTF8.GetString(buffer, 0, result.Count);
-                    m_lastMessageReceived = receivedMessage;
-                    if(m_onThreadMessageReceivedText!=null)
-                       m_onThreadMessageReceivedText(receivedMessage);
+                m_lastReceivedMessageTextDate = DateTime.UtcNow.ToString();
+                string receivedMessage = Encoding.UTF8.GetString(buffer, 0, result.Count);
+                m_lastMessageReceived = receivedMessage;
+                if(m_onThreadMessageReceivedText!=null)
+                    m_onThreadMessageReceivedText(receivedMessage);
+
                 if (!m_connectionEstablishedAndVerified)
                 {
-                    if (receivedMessage.Contains("SIGNIN:"))
+                    if (receivedMessage.StartsWith("SIGNIN:"))
                     {
                         m_messageToSignedReceived = receivedMessage.Replace("SIGNIN:", "");
                         m_isConnectionValidated = true;
                     }
-                    if (receivedMessage.Contains("RSA:Verified"))
+                    else if (receivedMessage.StartsWith("RSA:Verified"))
                     {
                         m_connectionEstablishedAndVerified = true;
+                    }
+                    else if (receivedMessage.ToLower().StartsWith("indexlock:")) { 
+                        
+                        string msg = receivedMessage.Substring("indexlock:".Length);
+                        if (int.TryParse(msg, out int index))
+                        {
+                            m_receiveGivenIndexLock = true;
+                            m_givenIndexLock = index;
+                        }
+                        else { 
+                            m_receiveGivenIndexLock = false;
+                            m_givenIndexLock = int.MinValue;
+                        }
                     }
                 }
             }
             else if (result.MessageType == WebSocketMessageType.Binary)
-                {
-                    m_lastReceivedMessageBinaryDate = DateTime.UtcNow.ToString();
-
-                    byte[] receivedMessage = new byte[result.Count];
-                    Array.Copy(buffer, receivedMessage, result.Count);
-                    m_lastMessageReceivedAsByte = receivedMessage;
-                    if(m_onThreadMessageReceivedBinary!=null)
-                        m_onThreadMessageReceivedBinary(receivedMessage);
+            {
+                m_lastReceivedMessageBinaryDate = DateTime.UtcNow.ToString();
+                byte[] receivedMessage = new byte[result.Count];
+                Array.Copy(buffer, receivedMessage, result.Count);
+                m_lastMessageReceivedAsByte = receivedMessage;
+                if(m_onThreadMessageReceivedBinary!=null)
+                    m_onThreadMessageReceivedBinary(receivedMessage);
             }
         }
     }
