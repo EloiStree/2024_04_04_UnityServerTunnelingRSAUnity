@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1739292519275092628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7718816294523983223}
+  - component: {fileID: 1734249270060647785}
+  m_Layer: 0
+  m_Name: RSA Mass Client Connection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7718816294523983223
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739292519275092628}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.133282, y: 1.1135602, z: 6.304668}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1734249270060647785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739292519275092628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f918330d4135183488c7ca9520d3c21e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_serverUri: ws://81.240.94.97:4501
+  m_clientAdditionInterval: 1
+  m_tunnels: []
+  m_continueAddingClients: 1
+  m_lastUsedTunnel:
+    m_useKeyPair:
+      m_publicKey: 
+      m_hiddenPrivateKey:
+        m_privateKey: 
+    m_connection:
+      m_launchState: 0
+      m_killSwitch:
+        m_needToBeKilled: 0
+      m_serverUri: 
+      m_runningThreadErrorHappened: 
+      m_runningListenerErrorHappened: 
+    m_handshake:
+      m_sentHello: 
+      m_signInMessage: 
+      m_guidToSigned: 
+      m_guidSignedB64: 
+      m_signedMessage: 
+      m_receivedValideHankShake: 
+      m_receivedIndexLockValidation: 
+      m_isConnectionValidated: 0
+      m_connectionEstablishedAndVerified: 0
+      m_receiveGivenIndexLock: 0
+      m_givenIndexLock: -2147483648
+    m_timeDebug:
+      m_lastReceivedMessageTextDate: 
+      m_lastReceivedMessageBinaryDate: 
+      m_lastPushMessageTextDate: 
+      m_lastPushMessageBinaryDate: 
+    m_byteCountDebug:
+      m_receivedBinaryBytesCount: 0
+      m_receivedTextBytesCount: 0
+      m_sentBinaryBytesCount: 0
+      m_sentTextBytesCount: 0
+    m_runningState:
+      isStillRunning: 0
+      isRunningHandleTask: 0
+      isRunningListener: 0
+      isWebsocketConnected: 0
+      m_websocketState: 0
+  m_delayBetweenEachPushClient: 0.5
