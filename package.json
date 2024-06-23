@@ -1,7 +1,7 @@
 
 {                                                                                
   "name": "be.eloistree.iidwstunnelingrsa",                              
-  "displayName": "Integer Index Date Web Socket RSA tunneling",                        
+  "displayName": "Web Socket RSA tunneling",                        
   "version": "0.0.1",                         
   "unity": "2018.1",                             
   "unityRelease": "",                             
