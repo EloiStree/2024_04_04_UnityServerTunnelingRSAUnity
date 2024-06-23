@@ -377,6 +377,84 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1012196628
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7869336415054142164, guid: 2304dfd061c1e0b42a5df9e170bb9904,
+        type: 3}
+      propertyPath: m_serverUri
+      value: ws://81.240.94.97:4504
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869336415054142164, guid: 2304dfd061c1e0b42a5df9e170bb9904,
+        type: 3}
+      propertyPath: m_autoReconnect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331533953225827462, guid: 2304dfd061c1e0b42a5df9e170bb9904,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.133282
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331533953225827462, guid: 2304dfd061c1e0b42a5df9e170bb9904,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.1135602
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331533953225827462, guid: 2304dfd061c1e0b42a5df9e170bb9904,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.304668
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331533953225827462, guid: 2304dfd061c1e0b42a5df9e170bb9904,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331533953225827462, guid: 2304dfd061c1e0b42a5df9e170bb9904,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331533953225827462, guid: 2304dfd061c1e0b42a5df9e170bb9904,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331533953225827462, guid: 2304dfd061c1e0b42a5df9e170bb9904,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331533953225827462, guid: 2304dfd061c1e0b42a5df9e170bb9904,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331533953225827462, guid: 2304dfd061c1e0b42a5df9e170bb9904,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331533953225827462, guid: 2304dfd061c1e0b42a5df9e170bb9904,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8380539252454399208, guid: 2304dfd061c1e0b42a5df9e170bb9904,
+        type: 3}
+      propertyPath: m_Name
+      value: RSA Connection Broadcaster Rust
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2304dfd061c1e0b42a5df9e170bb9904, type: 3}
 --- !u!1 &1025361586
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,6 +609,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RSA Mass Client Connection
       objectReference: {fileID: 0}
+    - target: {fileID: 1739292519275092628, guid: 08d20414a851c654e8dd9ff3b26cf0a2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7718816294523983223, guid: 08d20414a851c654e8dd9ff3b26cf0a2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -598,6 +681,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 'RSA 12 Connection '
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310717773322919100, guid: eb49576eb6ef24744bc335447cca8b7f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3428441173145410391, guid: eb49576eb6ef24744bc335447cca8b7f,
         type: 3}
@@ -715,7 +803,7 @@ PrefabInstance:
     - target: {fileID: 8380539252454399208, guid: 2304dfd061c1e0b42a5df9e170bb9904,
         type: 3}
       propertyPath: m_Name
-      value: RSA Connection Broadcaster
+      value: RSA Connection Broadcaster C#
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -729,6 +817,7 @@ SceneRoots:
   - {fileID: 961739753}
   - {fileID: 203844589}
   - {fileID: 7374825709548185111}
+  - {fileID: 1012196628}
   - {fileID: 937799029536848318}
   - {fileID: 1025361589}
   - {fileID: 5982602054196509989}
