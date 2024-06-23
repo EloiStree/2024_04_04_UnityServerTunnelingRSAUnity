@@ -47,53 +47,18 @@ public class RSATunnelingTaskRunUtility {
 
                     if (!handshake.m_connectionEstablishedAndVerified)
                     {
-                        string helloToSent = "Hello " + tunnel.GetPublicXmlKey();
-                        handshake.m_sentHello = helloToSent;
-                        byte[] b = Encoding.UTF8.GetBytes(helloToSent);
-                        await ws.SendAsync(new ArraySegment<byte>(b), WebSocketMessageType.Text, true, CancellationToken.None);
-
-                        while (handshake.m_guidToSigned.Length == 0)
+                        if (handshake.m_sentHello.Length == 0)
                         {
-                            await Task.Delay(20);
+                            string helloToSent = "Hello " + tunnel.GetPublicXmlKey();
+                            handshake.m_sentHello = helloToSent;
+                            byte[] b = Encoding.UTF8.GetBytes(helloToSent);
+                            await ws.SendAsync(new ArraySegment<byte>(b), WebSocketMessageType.Text, true, CancellationToken.None);
                         }
-
-
-                        RSA rsa = RSA.Create();
-
-                        rsa.KeySize = 1024;
-                        rsa.FromXmlString(tunnel.GetPrivateXmlKey());
-                        RSAParameters privateKey = rsa.ExportParameters(true);
-                        RSAParameters publicKey = rsa.ExportParameters(false);
-
-                        string messageToSigne = handshake.m_guidToSigned;
-
-                        byte[] data = Encoding.UTF8.GetBytes(messageToSigne);
-                        byte[] signature =  RSATunnelingUtility. SignData(data, privateKey);
-                        var signatureBase64 = Convert.ToBase64String(signature);
-                        string sent = "SIGNED:" + signatureBase64;
-                        byte[] signatureBytes = Encoding.UTF8.GetBytes(sent);
-                        Console.WriteLine($"Sent message to server: {sent}");
-                        Console.WriteLine($"Sent message to server: {messageToSigne}");
-
-                        handshake.m_signedMessage = sent;
-                        handshake.m_guidSignedB64 = signatureBase64;
-                        await ws.SendAsync(new ArraySegment<byte>(signatureBytes), WebSocketMessageType.Text, true, CancellationToken.None);
-                        // create a signe message
-                        byte[] bb = Encoding.UTF8.GetBytes(messageToSigne);
-                        await ws.SendAsync(new ArraySegment<byte>(bb), WebSocketMessageType.Text, true, CancellationToken.None);
-
-                        while (!handshake.m_connectionEstablishedAndVerified && ws.State == WebSocketState.Open)
-                        {
-                            if (tunnel.IsInMustBeKillMode())
-                                throw new Exception("Force clsoe");
-                            await Task.Delay(20);
-                        }
-                        handshake.m_isConnectionValidated = true;
-
-                        tunnel.NotifyAsConnectedAndVerified();
+                        
                     }
 
 
+                    //tunnel.m_byteCountDebug.m_datetimeNow = DateTime.UtcNow.Ticks;
 
                     Queue<string> queueText= tunnel.m_pushInTunnel.m_toSendToTheServerUTF8;
                     while (queueText.Count > 0)
@@ -121,7 +86,7 @@ public class RSATunnelingTaskRunUtility {
             catch (Exception ex)
             {
                 tunnel.m_connection.m_runningThreadErrorHappened = ex.Message + "\n\n" + ex.StackTrace;
-                Console.WriteLine($"WebSocket error: {ex.Message}");
+                //Console.WriteLine($"WebSocket error: {ex.Message}");
             }
 
         }
@@ -161,11 +126,38 @@ public class RSATunnelingTaskRunUtility {
                             handshake.m_isConnectionValidated = true;
                             handshake.m_signInMessage = receivedMessage;
                             handshake.m_guidToSigned = guid;
+
+                            {
+
+                                RSA rsa = RSA.Create();
+
+                                rsa.KeySize = 1024;
+                                rsa.FromXmlString(tunnel.GetPrivateXmlKey());
+                                RSAParameters privateKey = rsa.ExportParameters(true);
+                                RSAParameters publicKey = rsa.ExportParameters(false);
+
+                                string messageToSigne = handshake.m_guidToSigned;
+
+                                byte[] data = Encoding.UTF8.GetBytes(messageToSigne);
+                                byte[] signature = RSATunnelingUtility.SignData(data, privateKey);
+                                var signatureBase64 = Convert.ToBase64String(signature);
+                                string sent = "SIGNED:" + signatureBase64;
+                                byte[] signatureBytes = Encoding.UTF8.GetBytes(sent);
+                                //Console.WriteLine($"Sent message to server: {sent}");
+                                //Console.WriteLine($"Sent message to server: {messageToSigne}");
+
+                                handshake.m_signedMessage = sent;
+                                handshake.m_guidSignedB64 = signatureBase64;
+                                await webSocket.SendAsync(new ArraySegment<byte>(signatureBytes), WebSocketMessageType.Text, true, CancellationToken.None);
+
+                            }
+
                         }
                         else if (receivedMessage.StartsWith("RSA:Verified"))
                         {
                             handshake.m_receivedValideHankShake = receivedMessage;
                             handshake.m_connectionEstablishedAndVerified = true;
+                            tunnel.NotifyAsConnectedAndVerified();
                         }
                         
                     }

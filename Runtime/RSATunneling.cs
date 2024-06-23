@@ -158,6 +158,7 @@ public partial class RSATunneling
         public long m_receivedTextBytesCount = 0;
         public long m_sentBinaryBytesCount = 0;
         public long m_sentTextBytesCount = 0;
+        //public long m_datetimeNow = 0;
     }
 
     [System.Serializable]
