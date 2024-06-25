@@ -101,7 +101,7 @@ public class RSATunnelingTaskRunUtility {
         ClientWebSocket webSocket = tunnel.m_connection.m_websocket;
         HandshakeConnectionState handshake = tunnel.m_handshake;
 
-        byte[] buffer = new byte[600];
+        byte[] buffer = new byte[8096];
         try
         {
             while (webSocket.State == WebSocketState.Open)

@@ -139,5 +139,11 @@ public partial class RSATunneling
             if (m_trafficEvent.m_onWebsocketConnected != null)
             m_trafficEvent.m_onWebsocketConnected.Invoke();
         }
+
+        public void EnqueueInteger(int integerValue)
+        {
+            byte[] iBytes = BitConverter.GetBytes(integerValue);
+            EnqueueBinaryMessages(iBytes);
+        }
     }
 }

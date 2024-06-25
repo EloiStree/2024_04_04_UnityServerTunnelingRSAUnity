@@ -9,10 +9,16 @@ public class FirstBytesHistoryDebugMono : MonoBehaviour
     [TextArea(2,4)]
     public string m_debugText;
     public int m_maxLenght = 100;
+    public List<byte> m_ignoreBytes = new List<byte>();
+    
     private StringBuilder sb= new StringBuilder();
     public void PushBytesIn(byte[] bytes)
     {
         if (bytes==null || bytes.Length==0)
+        {
+            return;
+        }
+        if (m_ignoreBytes.Contains(bytes[0]))
         {
             return;
         }
