@@ -10,8 +10,8 @@ public class ConnectArrayToServerTunnelingRsaMono : MonoBehaviour
     public string[] m_privateKeys= new string[12];
     public List<WebsocketConnectionRsaTunneling> m_tunnels;
     public void SetServerURI(string serverUri) { m_serverUri = serverUri; }
-
-
+    public bool m_autoStartAtStart=true;
+    public float m_timeBeforeConnection = 0.5f;
     [ContextMenu("Push Random Value Integer LE to all")]
     public void PushRandomIIDToAll()
     {
@@ -76,7 +76,8 @@ public class ConnectArrayToServerTunnelingRsaMono : MonoBehaviour
             {
                 try { 
                 if (m_tunnels[i]!=null)
-                    m_tunnels[i].CloseTunnel();
+                        if (m_tunnels[i].HasStarted())
+                            m_tunnels[i].CloseTunnel();
                 
                 }catch(Exception e) { Debug.Log("Did not close properly:" + e.StackTrace, this.gameObject); }
             }
@@ -99,10 +100,29 @@ public class ConnectArrayToServerTunnelingRsaMono : MonoBehaviour
 
     public bool m_createNewRsaAtStart = false;
     public bool m_autoJoinCurrentGame = true;
-    public void Start()
+
+    public IEnumerator Start()
     {
-        if(m_createNewRsaAtStart)
+
+
+        if (m_createNewRsaAtStart)
             GenerateRandomPrivateKey();
+
+        if (m_autoStartAtStart) { 
+            yield return new WaitForSeconds(m_timeBeforeConnection);
+            ForceToReconnectAll();
+        }
+        yield return new WaitForSeconds(1f);
+
+        if (m_autoJoinCurrentGame)
+        {
+            NotifyWantToBePlayerAll();
+            ConfirmWantToBePlayerAll();
+        }
+    }
+
+    private void ConnectAll()
+    {
         m_tunnels = new List<WebsocketConnectionRsaTunneling>();
         for (int i = 0; i < m_privateKeys.Length; i++)
         {
@@ -110,12 +130,6 @@ public class ConnectArrayToServerTunnelingRsaMono : MonoBehaviour
             tunnel.SetConnectionInfo(m_serverUri, m_privateKeys[i]);
             m_tunnels.Add(tunnel);
             tunnel.StartConnection();
-        }
-       
-        if (m_autoJoinCurrentGame)
-        {
-            NotifyWantToBePlayerAll();
-            ConfirmWantToBePlayerAll();
         }
     }
 

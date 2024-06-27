@@ -21,6 +21,10 @@ public partial class RSATunneling
         public TrafficOutQueue m_pushInTunnel = new();
 
 
+         ~WebsocketConnectionRsaTunneling()
+        {
+            CloseTunnel();
+        }
 
         public bool HasServerAnsweredToHelloHandshake()
         {
