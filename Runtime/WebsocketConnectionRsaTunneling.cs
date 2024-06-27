@@ -149,5 +149,20 @@ public partial class RSATunneling
             byte[] iBytes = BitConverter.GetBytes(integerValue);
             EnqueueBinaryMessages(iBytes);
         }
+
+        public void PushClampedBytesAsIID(byte[] bytes)
+        {
+            if (bytes == null) return;
+
+            if (bytes.Length == 4 || bytes.Length == 12 || bytes.Length == 16) { 
+                EnqueueBinaryMessages(bytes);
+            }
+            else if (bytes.Length > 16)
+            {
+                byte[] b = new byte[16];
+                Array.Copy(bytes, 0, b, 0, 16);
+                EnqueueBinaryMessages(b);
+            }
+        }
     }
 }

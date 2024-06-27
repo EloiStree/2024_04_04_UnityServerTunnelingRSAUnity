@@ -5,9 +5,6 @@ using static RSATunneling;
 
 
 
-
-
-
 public class ConnectToServerTunnelingRsaMono : MonoBehaviour
 {
     [Header("Set RSA")]
@@ -231,8 +228,8 @@ public class ConnectToServerTunnelingRsaMono : MonoBehaviour
         m_tunnel.EnqueueBinaryMessages(localBytes);
     }
 
-
-
-
-
+    public void PushClampedBytesAsIID(byte[] bytes)
+    {
+        m_tunnel.PushClampedBytesAsIID(bytes);
+    }
 }
