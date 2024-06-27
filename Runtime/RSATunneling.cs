@@ -65,14 +65,16 @@ public partial class RSATunneling
             }
             if (m_runningThread != null)
             {
-                if(!m_runningThread.IsCompleted)
+                
+                if(m_runningThread.IsCompleted)
                     m_runningThread.Dispose();
             }
             if (m_runningListener != null)
             {
-                if (!m_runningThread.IsCompleted)
+                if (m_runningThread.IsCompleted)
                     m_runningListener.Dispose();
             }
+            // Missing some dispose when closed later.
         }
 
         public bool IsStillRunning()
