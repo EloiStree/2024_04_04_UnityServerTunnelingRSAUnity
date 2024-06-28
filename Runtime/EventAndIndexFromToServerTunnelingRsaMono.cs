@@ -16,8 +16,8 @@ public class EventAndIndexFromToServerTunnelingRsaMono : MonoBehaviour{
     private bool m_disconnected = false;
     private bool m_handshakeVerified = false;
     private bool m_indexLockChanged = false;
-    private int m_indexLock = 0;
-    private string m_publicKey = "";
+    public int m_indexLock = 0;
+    public string m_publicKey = "";
     private void Awake()
     {
         m_source.m_trafficEvent.m_onConnectionSignedAndValidated += () => { m_handshakeVerified = true; };

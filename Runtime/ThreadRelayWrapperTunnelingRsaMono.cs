@@ -131,18 +131,21 @@ public class ThreadRelayWrapperTunnelingRsaMono : MonoBehaviour
     private Thread m_listener = null;
 
 
+    public bool m_sentOnlyAfterVerified=true;
     public void PushBytesToTunnel(byte[] b)
     {
 
-        m_toAffect.PushMessageBytes(b);
-        if (m_useUnityEvent)
-        {
-
-            if (b != null && b.Length > 0)
+        if (m_sentOnlyAfterVerified && m_toAffect.m_tunnel.IsConnectedAndHandShakeVerified()) { 
+            m_toAffect.PushMessageBytes(b);
+            if (m_useUnityEvent)
             {
-                byte[] b2 = new byte[b.Length];
-                b.CopyTo(b2, 0);
-                m_unityThreadToSend.Enqueue(b2);
+
+                if (b != null && b.Length > 0)
+                {
+                    byte[] b2 = new byte[b.Length];
+                    b.CopyTo(b2, 0);
+                    m_unityThreadToSend.Enqueue(b2);
+                }
             }
         }
     }
