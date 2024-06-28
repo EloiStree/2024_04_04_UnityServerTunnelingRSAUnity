@@ -151,7 +151,17 @@ public class ThreadRelayWrapperTunnelingRsaMono : MonoBehaviour
     private void OnDisable()
     {
         m_keepAlive.m_keepAlive = false;
+
+        PushMessageOnListenerToContinueTheLoop();
     }
+
+    private void PushMessageOnListenerToContinueTheLoop()
+    {
+        UdpClient c = new UdpClient();
+        IPEndPoint e = new IPEndPoint(IPAddress.Parse("127.0.0.1"), m_listenPort);
+        c.Send(new byte[] { 1 }, 1, e);
+    }
+
     void OnApplicationQuit()
     {
 
