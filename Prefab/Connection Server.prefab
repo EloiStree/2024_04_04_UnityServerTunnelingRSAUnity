@@ -42,26 +42,63 @@ MonoBehaviour:
   m_GameObject: {fileID: 3899463444503619392}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a95a4ea85c3b33e489d5a0382dc259f9, type: 3}
+  m_Script: {fileID: 11500000, guid: e6c0d17f9ca8e4840844cfdea4e489bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_serverUri: ws://81.240.94.97:4501
-  m_privateKey: <RSAKeyValue><Modulus>th3XuMm0CO6RFE8MqZ9un1KjPeXSoYs7QEFAC+WEoYSfuL6B21weefdNFFdZlZCmn0K1J3iX3mXED5RUd2P5dfZx1Jo1cDh/+udOpUpBY/JBnHfD9RV0gh5ydVUWVcSiMNI+YFGYjDSbP8off3lPvWZ//HVvkxoSbukO8Z5SCxk=</Modulus><Exponent>AQAB</Exponent><P>0WbhbxZpX5DKjyFEPLCjhr254RJSUSCtZyEO/w5MywcifTMkCbfn2bHSVEs7Nz79zWyhuClC+gK+x93+2wVZ4w==</P><Q>3qSVilYbk/rdX4Cb9JvKIZx39VBn90Q4XtIIj0iFV0hg2Y5yh8mgTz3ZO4b1sQQoN4iFf+MR+V4IBf/z/AlH0w==</Q><DP>OGHJJU4VhUPJJozAgM7W2PrQx8dVHr77sZ73GLnS93+uS6OvemZoKPd2OHghM5jkYaF0Uc/aVtLSZ6JgcryYHQ==</DP><DQ>By6D7Fxus01KSsRZQ4Cq+n6TmAQp9l3q+5QG1qheNLyO8zWXGC42z5eNJFBsKHOb4H6037UxZTvVQmxJMH4UJQ==</DQ><InverseQ>Z4Txjn7901hgobqxdNMbGlmF7KhSmixKzTn6jF4zsHQshHy/fhfVV+hs4gdLyLOZcRRieii/7ppz1OmV/bjatQ==</InverseQ><D>kb0kCy7vMk6oL1ZrTbrWrg1VsY0fmENxsSQGev67uv4FS7S4+rCnevda6bJVcImHrd+WVPX+ou1Rjx4m0jxhPpmwBbFL2GsgEt4KdNhaAFZ4KS7oPkQn//gaRRNt44udGlO+Mz3TrVshfceCYiNVrjdTAP7VUsFoXp0UAm+4FLk=</D></RSAKeyValue>
-  m_publicKey: <RSAKeyValue><Modulus>th3XuMm0CO6RFE8MqZ9un1KjPeXSoYs7QEFAC+WEoYSfuL6B21weefdNFFdZlZCmn0K1J3iX3mXED5RUd2P5dfZx1Jo1cDh/+udOpUpBY/JBnHfD9RV0gh5ydVUWVcSiMNI+YFGYjDSbP8off3lPvWZ//HVvkxoSbukO8Z5SCxk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>
-  m_isConnectionValidated: 0
-  m_lastPushedMessage: 
-  m_lastPushedMessageAsByte: 
-  m_messageToSignedReceived: 
-  m_connectionEstablishedAndVerified: 0
-  m_lastMessageReceived: 
-  m_lastMessageReceivedAsByte: 
-  buffer: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  m_lastReceivedMessageTextDate: 
-  m_lastReceivedMessageBinaryDate: 
-  m_lastPushMessageTextDate: 
-  m_lastPushMessageBinaryDate: 
+  m_serverUri: ws://81.240.94.97:3615
+  m_rsaIdentity:
+    m_publicKey: 
+    m_hiddenPrivateKey:
+      m_privateKey: 
+  m_tunnel:
+    m_useKeyPair:
+      m_publicKey: 
+      m_hiddenPrivateKey:
+        m_privateKey: 
+    m_connection:
+      m_launchState: 0
+      m_killSwitch:
+        m_needToBeKilled: 0
+      m_serverUri: 
+      m_runningThreadErrorHappened: 
+      m_runningListenerErrorHappened: 
+    m_handshake:
+      m_sentHello: 
+      m_signInMessage: 
+      m_guidToSigned: 
+      m_guidSignedB64: 
+      m_signedMessage: 
+      m_receivedValideHankShake: 
+      m_receivedIndexLockValidation: 
+      m_isConnectionValidated: 0
+      m_connectionEstablishedAndVerified: 0
+      m_receiveGivenIndexLock: 0
+      m_givenIndexLock: -2147483648
+    m_timeDebug:
+      m_lastReceivedMessageTextDate: 
+      m_lastReceivedMessageBinaryDate: 
+      m_lastPushMessageTextDate: 
+      m_lastPushMessageBinaryDate: 
+    m_byteCountDebug:
+      m_receivedBinaryBytesCount: 0
+      m_receivedTextBytesCount: 0
+      m_sentBinaryBytesCount: 0
+      m_sentTextBytesCount: 0
+    m_runningState:
+      isStillRunning: 0
+      isRunningHandleTask: 0
+      isRunningListener: 0
+      isWebsocketConnected: 0
+      m_websocketState: 0
   m_autoStart: 1
   m_autoReconnect: 1
+  m_reconnectDelay: 5
+  m_runningState:
+    isStillRunning: 0
+    isRunningHandleTask: 0
+    isRunningListener: 0
+    isWebsocketConnected: 0
+    m_websocketState: 0
   m_previousInteger: 0
 --- !u!1 &4958614632564321435
 GameObject:

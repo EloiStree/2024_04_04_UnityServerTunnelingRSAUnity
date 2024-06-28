@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -710,26 +709,63 @@ MonoBehaviour:
   m_GameObject: {fileID: 1045676526}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a95a4ea85c3b33e489d5a0382dc259f9, type: 3}
+  m_Script: {fileID: 11500000, guid: e6c0d17f9ca8e4840844cfdea4e489bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_serverUri: ws://81.240.94.97:3615
-  m_privateKey: <RSAKeyValue><Modulus>pag9q/C3NF+ADjqIXMA++ZjQ9Y2CPOiBk4AYbgP7REIWqZ2GxaJLr2A/duxcjSISlXKixWrPl7INBIQF2MwswvFLhZQPUDjHO/Mva25xvi8N9/2cdTHjCF4qr8sx+TfAIJrKmlUULHeMfKm+mzmskDaVwUJGDcbkxDge55zYa1U=</Modulus><Exponent>AQAB</Exponent><P>2w9t0bN2aiDWI+VEBFoocavvSFsuOdFBbyJEKpsvTYakCe2Vss/Yi8U1ZfGF2ub1QF8A1rj8y6SiF4dq7vTkOw==</P><Q>wZd28LALhBkYS7xRarWkSb04nbCqzZUH9teMr9eGKr/zFhYd/IAY8RL1Rzv6ywZ0l3+5hLvhWsUviEoOLX3Frw==</Q><DP>oYZq76loszCrNaSj1qG0GL0ynyO8nh1SJmQZ52CuLHgPFNL/Au6HOeicSyMgFB0g0eo7cBjPLkmiy76qdrBUaQ==</DP><DQ>ftCsroB0GsWhn8MuBlwU0eUtWEcprGBLBk0vMOVbU1fIcphsbkKvlARaPp6w7Bw/dhrKOYQl3KM9PudcIDq6qw==</DQ><InverseQ>bhBjZObWn3Bz5qVaPM4t12DWhIwycUQEb4k20HEqWMj78Yns2g24VVD8x+RSyRoyCsRRtEcea2BxNZgmAMhtkw==</InverseQ><D>aTkAU2LHPAEdOex8CU4jsi8bK54DB+U3yRUob1kgFS9Vbc+dd5OrN26PYV6pOwxVeZAjS/qYeeai1id1/0tRckvtdik4VASO1JmnUjKxZ8jo+zS8qjVin3rOsA2Dr+jDrkvKY18P0dbFCv6+vH70f87RuxSJ8xKghc+v/2yXNdE=</D></RSAKeyValue>
-  m_publicKey: <RSAKeyValue><Modulus>pag9q/C3NF+ADjqIXMA++ZjQ9Y2CPOiBk4AYbgP7REIWqZ2GxaJLr2A/duxcjSISlXKixWrPl7INBIQF2MwswvFLhZQPUDjHO/Mva25xvi8N9/2cdTHjCF4qr8sx+TfAIJrKmlUULHeMfKm+mzmskDaVwUJGDcbkxDge55zYa1U=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>
-  m_isConnectionValidated: 0
-  m_lastPushedMessage: 
-  m_lastPushedMessageAsByte: 
-  m_messageToSignedReceived: 
-  m_connectionEstablishedAndVerified: 0
-  m_lastMessageReceived: 
-  m_lastMessageReceivedAsByte: 
-  buffer: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  m_lastReceivedMessageTextDate: 
-  m_lastReceivedMessageBinaryDate: 
-  m_lastPushMessageTextDate: 
-  m_lastPushMessageBinaryDate: 
+  m_rsaIdentity:
+    m_publicKey: 
+    m_hiddenPrivateKey:
+      m_privateKey: 
+  m_tunnel:
+    m_useKeyPair:
+      m_publicKey: 
+      m_hiddenPrivateKey:
+        m_privateKey: 
+    m_connection:
+      m_launchState: 0
+      m_killSwitch:
+        m_needToBeKilled: 0
+      m_serverUri: 
+      m_runningThreadErrorHappened: 
+      m_runningListenerErrorHappened: 
+    m_handshake:
+      m_sentHello: 
+      m_signInMessage: 
+      m_guidToSigned: 
+      m_guidSignedB64: 
+      m_signedMessage: 
+      m_receivedValideHankShake: 
+      m_receivedIndexLockValidation: 
+      m_isConnectionValidated: 0
+      m_connectionEstablishedAndVerified: 0
+      m_receiveGivenIndexLock: 0
+      m_givenIndexLock: -2147483648
+    m_timeDebug:
+      m_lastReceivedMessageTextDate: 
+      m_lastReceivedMessageBinaryDate: 
+      m_lastPushMessageTextDate: 
+      m_lastPushMessageBinaryDate: 
+    m_byteCountDebug:
+      m_receivedBinaryBytesCount: 0
+      m_receivedTextBytesCount: 0
+      m_sentBinaryBytesCount: 0
+      m_sentTextBytesCount: 0
+    m_runningState:
+      isStillRunning: 0
+      isRunningHandleTask: 0
+      isRunningListener: 0
+      isWebsocketConnected: 0
+      m_websocketState: 0
   m_autoStart: 1
   m_autoReconnect: 1
+  m_reconnectDelay: 5
+  m_runningState:
+    isStillRunning: 0
+    isRunningHandleTask: 0
+    isRunningListener: 0
+    isWebsocketConnected: 0
+    m_websocketState: 0
   m_previousInteger: 0
 --- !u!4 &1045676528
 Transform:
@@ -1348,26 +1384,63 @@ MonoBehaviour:
   m_GameObject: {fileID: 1999344592}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a95a4ea85c3b33e489d5a0382dc259f9, type: 3}
+  m_Script: {fileID: 11500000, guid: e6c0d17f9ca8e4840844cfdea4e489bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_serverUri: ws://81.240.94.97:3615
-  m_privateKey: <RSAKeyValue><Modulus>28hcojmUPKGJAp5+TeocYBZ6YYSiG85+BaRcrQ0c8Lnraa2czWZfZDmguC4VoeJ44JmO7RMGmOUWie+QAJwLRLwlN19J3+sy/LzgYQL9VtrEM7Eyx1KnGWN08ZablH/Vrg7+/K/97+Q9neeimpufTtOCoym7sTcHHvlsa98IytE=</Modulus><Exponent>AQAB</Exponent><P>9I2dGJ9OYjUELlcqBmY/ieI1uv//1F3BdoeeplgPU0e7nZY/0IZrPJuMlZZDEitMFgcA0Fq/zwLalSLRytsqmw==</P><Q>5hHuw8SxLjWllvvAyf+J6TPVLDpKb6TfhjFWXIh/jGyrtDlxHkjXxzJ8257O2RuLldFjvyHhnD0H9HzXDpkRAw==</Q><DP>camQJm2EhOiXNOKWSbskNPXKe0uYoB+jV2/ZMP8kwFRKwweeSVDwbo7tXGkmaz9scaB3pF9JXvG4njA8ycfrmQ==</DP><DQ>YNhdnFS4jI4ShSq2LZF+uQaTjkl/Od26JZ+xDcR7hF3eLUAcyLW69uPewQfpZGR+7nK0vSkC8iSSq6y9TizKhw==</DQ><InverseQ>mF7mxJyiKT+oMfxZzTrYr1NWrp2l1pxoaXwOmFEBSegP2Lka9l38M1y2ij4+/790uzKD7EIv8m9ARfxdxAu0dw==</InverseQ><D>M5/ysmBYA43mAul7vY16MM/W20UuVt3AGE8tPbDQ1XK2a1JOfKjJS1+F8v1QM4Bg6FDpk6JecFePXcMZzirZMlKK9Wh/2p04ZNSlM9haZOqvrAEVDzr7QxTOn1uMGJwudNFHZMHx1sW5L+RJgkv527NDeAT/PxScrgOM01piNOk=</D></RSAKeyValue>
-  m_publicKey: <RSAKeyValue><Modulus>28hcojmUPKGJAp5+TeocYBZ6YYSiG85+BaRcrQ0c8Lnraa2czWZfZDmguC4VoeJ44JmO7RMGmOUWie+QAJwLRLwlN19J3+sy/LzgYQL9VtrEM7Eyx1KnGWN08ZablH/Vrg7+/K/97+Q9neeimpufTtOCoym7sTcHHvlsa98IytE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>
-  m_isConnectionValidated: 0
-  m_lastPushedMessage: 
-  m_lastPushedMessageAsByte: 
-  m_messageToSignedReceived: 
-  m_connectionEstablishedAndVerified: 0
-  m_lastMessageReceived: 
-  m_lastMessageReceivedAsByte: 
-  buffer: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  m_lastReceivedMessageTextDate: 
-  m_lastReceivedMessageBinaryDate: 
-  m_lastPushMessageTextDate: 
-  m_lastPushMessageBinaryDate: 
+  m_rsaIdentity:
+    m_publicKey: 
+    m_hiddenPrivateKey:
+      m_privateKey: 
+  m_tunnel:
+    m_useKeyPair:
+      m_publicKey: 
+      m_hiddenPrivateKey:
+        m_privateKey: 
+    m_connection:
+      m_launchState: 0
+      m_killSwitch:
+        m_needToBeKilled: 0
+      m_serverUri: 
+      m_runningThreadErrorHappened: 
+      m_runningListenerErrorHappened: 
+    m_handshake:
+      m_sentHello: 
+      m_signInMessage: 
+      m_guidToSigned: 
+      m_guidSignedB64: 
+      m_signedMessage: 
+      m_receivedValideHankShake: 
+      m_receivedIndexLockValidation: 
+      m_isConnectionValidated: 0
+      m_connectionEstablishedAndVerified: 0
+      m_receiveGivenIndexLock: 0
+      m_givenIndexLock: -2147483648
+    m_timeDebug:
+      m_lastReceivedMessageTextDate: 
+      m_lastReceivedMessageBinaryDate: 
+      m_lastPushMessageTextDate: 
+      m_lastPushMessageBinaryDate: 
+    m_byteCountDebug:
+      m_receivedBinaryBytesCount: 0
+      m_receivedTextBytesCount: 0
+      m_sentBinaryBytesCount: 0
+      m_sentTextBytesCount: 0
+    m_runningState:
+      isStillRunning: 0
+      isRunningHandleTask: 0
+      isRunningListener: 0
+      isWebsocketConnected: 0
+      m_websocketState: 0
   m_autoStart: 1
   m_autoReconnect: 1
+  m_reconnectDelay: 5
+  m_runningState:
+    isStillRunning: 0
+    isRunningHandleTask: 0
+    isRunningListener: 0
+    isWebsocketConnected: 0
+    m_websocketState: 0
   m_previousInteger: 0
 --- !u!4 &1999344594
 Transform:
