@@ -164,5 +164,23 @@ public partial class RSATunneling
                 EnqueueBinaryMessages(b);
             }
         }
+
+        public bool HasIndexLock() {
+            return m_handshake.m_receiveGivenIndexLock;
+        }
+        public int GetIndexLock()
+        {
+            return m_handshake.m_givenIndexLock;
+        }
+
+        public bool IsDisconnected()
+        {
+            return !m_runningState.isWebsocketConnected;
+        }
+
+        public bool IsConnected()
+        {
+            return m_runningState.isWebsocketConnected;
+        }
     }
 }
