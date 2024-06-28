@@ -122,13 +122,19 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &236787859 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6928582281779180140, guid: 7e3ec3f81d802054fb7053d2c186fd20,
+    type: 3}
+  m_PrefabInstance: {fileID: 788614535078852373}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &236787860 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8838002860633094636, guid: 7e3ec3f81d802054fb7053d2c186fd20,
     type: 3}
   m_PrefabInstance: {fileID: 788614535078852373}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 236787859}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6c0d17f9ca8e4840844cfdea4e489bf, type: 3}
@@ -140,6 +146,26 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 788614535078852373}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &236787862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236787859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c61024400bb3364da777b53206be0ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_connection: {fileID: 236787860}
+  m_onReceivedMessageUTF8:
+    m_PersistentCalls:
+      m_Calls: []
+  m_onReceivedMessageBytes:
+    m_PersistentCalls:
+      m_Calls: []
+  m_catchExceptions: 0
 --- !u!1 &1038545150
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,6 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1038545151}
   - component: {fileID: 1038545152}
+  - component: {fileID: 1038545153}
   m_Layer: 0
   m_Name: Listen Event
   m_TagString: Untagged
@@ -205,6 +232,37 @@ MonoBehaviour:
       m_Calls: []
   m_indexLock: 0
   m_publicKey: 
+--- !u!114 &1038545153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038545150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 409e6ae55d64ad140b82d2427ab5ccd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_onAwake: 0
+  m_onStart: 1
+  m_onEnable: 0
+  m_timeWhenToTick: 2
+  m_tick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1038545152}
+        m_TargetAssemblyTypeName: EventAndIndexFromToServerTunnelingRsaMono, be.eloistree.iidwstunnelingrsa
+        m_MethodName: FetchStateInformation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1136015824
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,7 +558,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1038545151}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6928582281779180140, guid: 7e3ec3f81d802054fb7053d2c186fd20,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 236787862}
   m_SourcePrefab: {fileID: 100100000, guid: 7e3ec3f81d802054fb7053d2c186fd20, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
