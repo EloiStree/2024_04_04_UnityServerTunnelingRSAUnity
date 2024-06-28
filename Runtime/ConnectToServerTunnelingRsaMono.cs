@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using UnityEngine;
 using static RSATunneling;
 
@@ -12,7 +13,14 @@ public class ConnectToServerTunnelingRsaMono : MonoBehaviour
     public WebsocketConnectionRsaTunneling m_tunnel;
     public RSATunneling.TraffictInEvent m_trafficEvent;
 
- 
+
+    [ContextMenu("Generate Rsa Key Pair")]
+    public void GenerateRsaKey1024() { 
+        RSA rsa = RSA.Create(1024);
+        m_rsaIdentity.m_hiddenPrivateKey.m_privateKey = rsa.ToXmlString(true);
+        m_rsaIdentity.m_publicKey = rsa.ToXmlString(false);
+
+    }
 
     [Header("Auto Start (temporary)")]
     public bool m_autoStart = true;
@@ -116,6 +124,34 @@ public class ConnectToServerTunnelingRsaMono : MonoBehaviour
         c.m_trafficEvent.m_onThreadMessagePushedText = OnMessagePushedText;
         c.m_trafficEvent.m_onThreadMessageReceivedBinary = OnMessageReceivedBinary;
         c.m_trafficEvent.m_onThreadMessageReceivedText = OnMessageReceivedText;
+        c.m_trafficEvent.m_onConnectionSignedAndValidated = OnSignedAndValidated;
+        c.m_trafficEvent.m_onWebsocketConnected = OnConnectionEstablished;
+        c.m_trafficEvent.m_onConnectionLost = OnConnectionLost;
+        c.m_trafficEvent.m_onIndexLockChanged = OnIndexChanged;
+    }
+
+    private void OnIndexChanged(int index)
+    {
+        if (m_trafficEvent.m_onIndexLockChanged != null)
+            m_trafficEvent.m_onIndexLockChanged(index);
+    }
+
+    private void OnSignedAndValidated()
+    {
+        if (m_trafficEvent.m_onConnectionSignedAndValidated != null)
+            m_trafficEvent.m_onConnectionSignedAndValidated();
+    }
+
+    private void OnConnectionEstablished()
+    {
+        if (m_trafficEvent.m_onWebsocketConnected != null)
+            m_trafficEvent.m_onWebsocketConnected();
+    }
+
+    private void OnConnectionLost()
+    {
+        if (m_trafficEvent.m_onConnectionLost != null)
+            m_trafficEvent.m_onConnectionLost();
     }
 
     private void OnMessageReceivedText(string message)

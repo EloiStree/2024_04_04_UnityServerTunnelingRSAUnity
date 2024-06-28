@@ -177,8 +177,9 @@ public class RSATunnelingTaskRunUtility {
                             handshake.m_receiveGivenIndexLock = false;
                             handshake.m_givenIndexLock = int.MinValue;
                         }
-                        
-                         tunnel.m_trafficEvent.m_onIndexLockChanged.Invoke(handshake.m_givenIndexLock);
+
+                        if (tunnel.m_trafficEvent.m_onIndexLockChanged != null)
+                            tunnel.m_trafficEvent.m_onIndexLockChanged(handshake.m_givenIndexLock);
                     }
                 }
                 else if (result.MessageType == WebSocketMessageType.Binary)

@@ -156,7 +156,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1038545151
 Transform:
   m_ObjectHideFlags: 0
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1038545150}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01aa6c604551d85478430e00dddf4fad, type: 3}
   m_Name: 
@@ -203,6 +203,8 @@ MonoBehaviour:
   m_publicKeyValidated:
     m_PersistentCalls:
       m_Calls: []
+  m_indexLock: 0
+  m_publicKey: 
 --- !u!1 &1136015824
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,6 +477,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RSA WS Connection IID Gate
+      objectReference: {fileID: 0}
+    - target: {fileID: 7379352320962897466, guid: 7e3ec3f81d802054fb7053d2c186fd20,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8838002860633094636, guid: 7e3ec3f81d802054fb7053d2c186fd20,
+        type: 3}
+      propertyPath: m_rsaIdentity.m_publicKey
+      value: <RSAKeyValue><Modulus>3TRAVxnuwGzcpoLK9toC+BPkbTUIo6bXhgD3TNudSIVkqeaeDGfkvxENkGAW9+VL2AE4aCaKWKrwj4rdbDZOTTtdvVX75upaCQq2LiqI30WBEbFJj5Vu+79pvyuQjXdtp3w8H7Q5hmGVNu5mVYATsErWq269hXoXQj3mjRsrZiE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>
+      objectReference: {fileID: 0}
+    - target: {fileID: 8838002860633094636, guid: 7e3ec3f81d802054fb7053d2c186fd20,
+        type: 3}
+      propertyPath: m_rsaIdentity.m_hiddenPrivateKey.m_privateKey
+      value: <RSAKeyValue><Modulus>3TRAVxnuwGzcpoLK9toC+BPkbTUIo6bXhgD3TNudSIVkqeaeDGfkvxENkGAW9+VL2AE4aCaKWKrwj4rdbDZOTTtdvVX75upaCQq2LiqI30WBEbFJj5Vu+79pvyuQjXdtp3w8H7Q5hmGVNu5mVYATsErWq269hXoXQj3mjRsrZiE=</Modulus><Exponent>AQAB</Exponent><P>+5LvD4X+jZu+7PngkDfb63S3WI9U5d8QnnGzVyHVf4lZFUil+a2/oFiImDUa2llZkfwvUjJAlSWiM5F8iKqvMQ==</P><Q>4RiI0Zx0hUo843lrIcQKxwD3N36UMukyguctVHW8LN4Fa6AGlCOH2wylcITQkhswdWgdvcAarkF4LnIsuB/J8Q==</Q><DP>wMX/8ApCW+qra9WyEXDsUUmXsQHsEVVT28XOogboHZl2rMuFe4R7YXhV+yQ+VnC/JRF0hWzCdkdnOlLSdbstEQ==</DP><DQ>dvctkIL8/lk/FwZb/auL+qNjBTxr/QBMxuyBg6r5+kiZWsln0LF6ouXrJi27wgyGrvaJCXlXYJOPfhSv19xNMQ==</DQ><InverseQ>Lk629lTIi/mp5xX0IKYwUOomzDIffR5dromLu6UwZP0q7d7EfRCNb+aNn4oyP6q8w5U4z4VMxQPC41NOX6hRSQ==</InverseQ><D>oH8r+8a+G3IhOtOFbkxKgTL1t2MWbJ8+m2USCfsCiL74henlXPz41MULwWhm4eDGAekIw1DLaoBE4PGRrNVOQ5Nm58xbhpiaBIr0QpvTNPyD854GSMsCsMtHVBkoT5FEcymfp9oDIzgjPCFg0up/u+SOE/jVkkBx2cnKOyaU0wE=</D></RSAKeyValue>
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

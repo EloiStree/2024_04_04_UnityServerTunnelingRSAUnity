@@ -17,8 +17,8 @@ public class ReceivedFromConnectToRelayServerTunnelingRsaMono : MonoBehaviour
     {
         if (m_connection != null)
         {
-            m_connection.m_trafficEvent.m_onThreadMessageReceivedBinary = OnMessageReceived;
-            m_connection.m_trafficEvent.m_onThreadMessageReceivedText = OnMessageReceived;
+            m_connection.m_trafficEvent.m_onThreadMessageReceivedBinary += OnMessageReceived;
+            m_connection.m_trafficEvent.m_onThreadMessageReceivedText += OnMessageReceived;
         }
     }
 
