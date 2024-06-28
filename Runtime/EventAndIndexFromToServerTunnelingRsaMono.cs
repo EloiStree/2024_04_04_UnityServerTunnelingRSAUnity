@@ -11,11 +11,11 @@ public class EventAndIndexFromToServerTunnelingRsaMono : MonoBehaviour{
     public UnityEvent<bool> m_onIndexLockChangedAndIsValide;
     public UnityEvent<string> m_publicKeyValidated;
 
-
-    private bool m_connected = false;
+    //Test
     private bool m_disconnected = false;
     private bool m_handshakeVerified = false;
     private bool m_indexLockChanged = false;
+    private bool m_connected = false;
     public int m_indexLock = 0;
     public string m_publicKey = "";
     private void Start()
