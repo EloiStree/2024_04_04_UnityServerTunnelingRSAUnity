@@ -29,6 +29,7 @@ public partial class RSATunneling
         public Action m_onWebsocketConnected;
         public Action m_onConnectionSignedAndValidated;
         public Action m_onConnectionLost;
+        public Action<int> m_onIndexLockChanged;
     }
 
 
