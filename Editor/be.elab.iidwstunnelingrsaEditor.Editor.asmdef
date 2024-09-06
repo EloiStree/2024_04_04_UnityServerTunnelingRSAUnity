@@ -1,10 +1,12 @@
 
 {                                                                   
-            "name": "be.eloistree.iidwstunnelingrsa",          
-    "references": [
+            "name": "be.elab.iidwstunnelingrsaEditor",          
+    "references": ["be.elab.iidwstunnelingrsa","be.elab.immoshielddrone"
 ],                                                              
     "optionalUnityReferences": [],                                  
-    "includePlatforms": [],                                                  
+    "includePlatforms": [                                           
+        "Editor"                                                    
+    ],                                                              
     "excludePlatforms": [],                                         
     "allowUnsafeCode": false,                                       
     "overrideReferences": false,                                    
